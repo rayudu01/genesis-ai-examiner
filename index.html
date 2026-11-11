@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#143f7a">
+  <meta name="description" content="Genesis Academy offline-first CBSE answer sheet evaluator">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Genesis AI Examiner | Genesis Academy</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brandmark">GA</div>
+  <div><strong>GENESIS ACADEMY</strong><small>Smarter assessment. Better learning.</small></div>
+  <span class="offline-pill" id="networkState">OFFLINE READY</span>
+</header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">CBSE CLASSES 6–10 · MATHEMATICS & SCIENCE</p>
+    <h1>Genesis AI Examiner</h1>
+    <p>Prepare marking schemes, assess answer sheets, review student progress — with records kept on this device.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Main navigation">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="papers">Question papers</button>
+    <button class="tab" data-tab="evaluate">Evaluate</button>
+    <button class="tab" data-tab="reports">Reports</button>
+  </nav>
+
+  <section id="dashboard" class="view active">
+    <div class="metrics">
+      <article class="metric"><span>Question papers</span><b id="paperCount">0</b></article>
+      <article class="metric"><span>Evaluations</span><b id="assessmentCount">0</b></article>
+      <article class="metric"><span>Class average</span><b id="averageScore">0%</b></article>
+      <article class="metric"><span>Students assessed</span><b id="studentCount">0</b></article>
+    </div>
+    <article class="panel">
+      <h2>Recent evaluations</h2>
+      <div id="recentList" class="empty">No evaluations yet. Create a question paper to begin.</div>
+    </article>
+    <article class="notice">
+      <b>Offline and privacy note</b>
+      <p>Once installed and loaded, this app shell works offline. Student records and imported files stay in this browser's storage. This V3 uses transparent rubric/keyword suggestions; it is not a trained generative AI examiner. Teacher verification is essential.</p>
+    </article>
+  </section>
+
+  <section id="papers" class="view">
+    <div class="section-head"><div><p class="eyebrow">MARKING SCHEME LIBRARY</p><h2>Question papers</h2></div><button class="primary" id="newPaperBtn">+ New paper</button></div>
+    <div id="paperList" class="stack empty">No question papers created.</div>
+    <div id="paperEditor" class="panel hidden">
+      <h3>Create question paper</h3>
+      <label>Paper title<input id="paperTitle" placeholder="e.g. Periodic Test 1"></label>
+      <div class="two">
+        <label>Class<select id="paperGrade"><option>6</option><option>7</option><option>8</option><option>9</option><option selected>10</option></select></label>
+        <label>Subject<select id="paperSubject"><option>Mathematics</option><option>Science</option></select></label>
+      </div>
+      <label>Question paper file (PDF or photo)<input id="paperFile" type="file" accept="application/pdf,image/*"></label>
+      <p class="hint">The file is stored locally. Enter or correct the question text and marking scheme below. This web build does not claim automatic handwriting/PDF OCR.</p>
+      <div class="divider"></div>
+      <h3>Add question</h3>
+      <div class="two">
+        <label>Question no.<input id="qNumber" value="1"></label>
+        <label>Maximum marks<input id="qMarks" type="number" min="0.5" step="0.5" value="1"></label>
+      </div>
+      <label>Question / prompt<textarea id="qPrompt" rows="2" placeholder="Enter the question"></textarea></label>
+      <label>Expected answer / key points<textarea id="qExpected" rows="3" placeholder="Enter model answer or key concepts"></textarea></label>
+      <label>Rubric criteria (one per line, format: criterion | marks)<textarea id="qRubric" rows="3" placeholder="Defines photosynthesis | 1&#10;Mentions sunlight | 1&#10;States glucose and oxygen are products | 1"></textarea></label>
+      <button class="secondary" id="addQuestionBtn">Add question to paper</button>
+      <div id="draftQuestions" class="stack"></div>
+      <div class="actions"><button class="primary" id="savePaperBtn">Save question paper</button><button class="ghost" id="cancelPaperBtn">Cancel</button></div>
+    </div>
+  </section>
+
+  <section id="evaluate" class="view">
+    <p class="eyebrow">STUDENT ASSESSMENT</p><h2>Evaluate answer sheet</h2>
+    <div class="panel">
+      <label>Question paper<select id="evalPaper"></select></label>
+      <div class="two">
+        <label>Student name<input id="studentName" placeholder="Student name"></label>
+        <label>Roll number<input id="rollNumber" placeholder="Roll no."></label>
+      </div>
+      <label>Answer sheet photos (camera or gallery)<input id="answerPhotos" type="file" accept="image/*" capture="environment" multiple></label>
+      <label>Answer sheet PDF<input id="answerPDF" type="file" accept="application/pdf"></label>
+      <p class="hint">Photographs/PDF are retained locally for reference. For accurate offline evaluation, transcribe or correct the student's answer in the text box for each question. Handwriting recognition is not built into this browser version.</p>
+      <div id="answerInputs" class="stack"></div>
+      <button class="primary full" id="runEvaluationBtn">Evaluate with offline rubric</button>
+    </div>
+  </section>
+
+  <section id="reports" class="view">
+    <p class="eyebrow">PERFORMANCE & COMMON ERRORS</p><h2>Reports and analytics</h2>
+    <div id="analytics" class="metrics"></div>
+    <article class="panel"><h3>Common improvement areas</h3><div id="commonMistakes" class="empty">No data yet.</div></article>
+    <article class="panel"><h3>Student assessments</h3><div id="assessmentList" class="stack empty">No reports yet.</div></article>
+  </section>
+</main>
+<footer>GENESIS ACADEMY · GENESIS AI EXAMINER · V3</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

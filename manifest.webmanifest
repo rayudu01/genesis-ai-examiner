@@ -1,0 +1,25 @@
+{
+  "name": "Genesis AI Examiner \u2013 Genesis Academy",
+  "short_name": "Genesis Examiner",
+  "description": "Offline-first CBSE answer sheet assessment for Classes 6\u201310",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f6fa",
+  "theme_color": "#143f7a",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
